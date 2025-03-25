@@ -1,13 +1,23 @@
 # Hardcoded values for the season and plant type
 # Code does not support any form of user interaction (Issue #1).
 # → Fix: Implement user input functionality to allow users to enter the season
-#        and plant type. → branch 'feature/allow-user-interaction'
+#        and plant type (Fix #1). → branch 'feature/allow-user-interaction'
 
 # Code does not provide adequate mapping of advice based on the season
 # and plant type and lacks readability and modularity (Issue #2).
 # → Fix: Use a dictionary or object to store advice based on the season
-#        and plant type, as well as enhance code readability & modularity.
+#        and plant type, as well as enhance code readability &
+#        modularity (Fix #2).
 #        → branch 'feature/enhance-code-documentation'
+
+"""
+Garden Advice Application
+
+This program offers gardening advice tailored to the current season and
+plant type. Users need to specify their season and the plant type they
+want to manage. The program then generates personalized gardening tips
+and recommendations based on this information.
+"""
 
 
 def get_user_input(prompt, valid_options):
@@ -30,14 +40,60 @@ def get_user_input(prompt, valid_options):
 
 
 def generate_advice(season, plant_type):
-    # Will contain dictionary mapping seasons and plant type
-    # to their corresponding advice
-    pass
+    """
+    Generate gardening advice based on the season and plant type.
+
+    Args:
+        season (str): The current season.
+        plant_type (str): The type of plant.
+
+    Returns:
+        str: A combined advice string.
+    """
+    # Dictionary mapping seasons to their corresponding advice
+    season_advice = {
+        "spring": "Prepare your garden with compost and plant early blooms.",
+        "summer": "Water your plants regularly and provide some shade.",
+        "autumn": "Prune dead branches and prepare for cooler weather.",
+        "winter": "Protect your plants from frost with covers."
+    }
+
+    # Dictionary mapping plant types to their corresponding advice
+    plant_advice = {
+        "flower": "Use fertiliser to encourage blooms.",
+        "vegetable": "Keep an eye out for pests!",
+        "herb": "Harvest regularly to promote growth.",
+        "tree": "Ensure adequate space and water for root expansion."
+    }
+
+    # Retrieve advice for the season; default message if season is not in
+    # dictionary.
+    advice_text = season_advice.get(season, "No advice for this season.")
+    # Append advice for the plant type; default message if plant type is
+    # not in dictionary.
+    advice_text += "\n" + plant_advice.get(
+        plant_type, "No advice for this type of plant.")
+
+    return advice_text
 
 
 def recommend_plants(season):
-    # Provide plant dictionary recommendations based on the season.
-    pass
+    """
+    Provide plant recommendations based on the season.
+
+    Args:
+        season (str): The current season.
+
+    Returns:
+        str: Recommended plants suitable for the season.
+    """
+    recommendations = {
+        "spring": "Consider planting tulips, daffodils, or daisies.",
+        "summer": "Try growing sunflowers or marigolds.",
+        "autumn": "Consider chrysanthemums or pansies.",
+        "winter": "Opt for indoor plants like peace lilies or snake plants."
+    }
+    return recommendations.get(season, "No recommendations for this season.")
 
 
 def main():
@@ -77,11 +133,11 @@ if __name__ == "__main__":
     main()
 
 
-season = "summer"
-plant_type = "flower"
+# season = "summer"
+# plant_type = "flower"
 
-# Variable to hold gardening advice
-advice = ""
+# # Variable to hold gardening advice
+# advice = ""
 
 # # Determine advice based on the season
 # if season == "summer":
